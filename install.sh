@@ -22,42 +22,149 @@
 # may have through this project. We are totally convinced that if we teach how 
 # vulnerable things really are, we can make the Internet a safer place.
 
-RSA="\033[31m"
-YSA="\033[1;93m"
-CEA="\033[0m"
-WHS="\033[0;97m"
+RS="\033[1;31m"
+YS="\033[1;33m"
+CE="\033[0m"
+GNS="-e \033[32m"
 
-WHO="$( whoami )"
-
-if [[ "$WHO" != "root" ]]
+if [[ $EUID -ne 0 ]]
 then
-sleep 1
-echo -e "$RS"run it as"$CE" "$YS"root"$CE"
-sleep 1
-echo -e "$RS"or use"$CE" "$YS"sudo"$CE"
-sleep 1
-exit
+   sleep 1
+   echo -e "["$RS"*"$CE"] "$RS"This script must be run as "$YS"root"$CE""
+   sleep 1
+   exit
 fi
 
 if [[ -d ~/geospy ]]
 then
-cd ~/geospy
+cd ~/geospy/bin
 {
-cp bin/geospy /usr/local/bin
+cp geospy /usr/local/bin
 chmod +x /usr/local/bin/geospy
-cp bin/geospy /bin
+cp geospy /bin
 chmod +x /bin/geospy
-python -m pip install -r requirements.txt
 } &> /dev/null
 else
 cd ~
 {
 git clone https://github.com/entynetproject/geospy.git
-cd  ~/geospy
-cp bin/geospy /usr/local/bin
+cd ~/geospy/bin
+cp geospy /usr/local/bin
 chmod +x /usr/local/bin/geospy
-cp bin/geospy /bin
+cp geospy /bin
 chmod +x /bin/geospy
-python -m pip install -r requirements.txt
 } &> /dev/null
 fi
+sleep 0.5
+cd ~/geospy
+python banner.py
+
+if [[ -f /etc/geospy.conf ]]
+then
+
+CONF="$( cat /etc/geospy.conf )"
+sleep 1
+
+if [[ "$CONF" = "arm" ]]
+then
+if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
+then
+echo ""$GNS"Installing dependencies..."$CE""
+else 
+echo ""$GNS"Installing dependencies..."$CE""
+pkg update
+pkg install python
+pkg install python-pip
+fi
+fi
+
+if [[ "$CONF" = "amd" ]]
+then
+if [[ -d /System/Library/CoreServices/Finder.app ]]
+then
+echo ""$GNS"Installing dependencies..."$CE""
+else
+echo ""$GNS"Installing dependencies..."$CE""
+apt-get update
+apt-get install python
+apt-get install python-pip
+fi
+fi
+
+if [[ "$CONF" = "intel" ]]
+then
+if [[ -d /System/Library/CoreServices/Finder.app ]]
+then
+echo ""$GNS"Installing dependencies..."$CE""
+else
+echo ""$GNS"Installing dependencies..."$CE""
+apt-get update
+apt-get install python
+apt-get install python-pip
+fi
+fi
+
+else
+read -e -p $'\033[1;34m- \033[0mSelect your architecture (amd/intel/arm) \033[33m~> \033[0m' CONF
+if [[ "$CONF" = "" ]]
+then
+exit
+else
+if [[ "$CONF" = "arm" ]]
+then
+read -e -p $'\033[1;34m- \033[0mIs this a single board computer (yes/no)? \033[33m~> \033[0m' PI
+if [[ "$PI" = "yes" ]]
+then
+echo "amd" >> /etc/geospy.conf
+CONF="amd"
+else
+echo "$CONF" >> /etc/geospy.conf
+fi
+fi
+fi
+sleep 1
+
+if [[ "$CONF" = "arm" ]]
+then
+if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
+then
+echo ""$GNS"Installing dependencies..."$CE""
+else 
+echo ""$GNS"Installing dependencies..."$CE""
+pkg update
+pkg install python
+pkg install python-pip
+fi
+fi
+
+if [[ "$CONF" = "amd" ]]
+then
+if [[ -d /System/Library/CoreServices/Finder.app ]]
+then
+echo ""$GNS"Installing dependencies..."$CE""
+else
+echo ""$GNS"Installing dependencies..."$CE""
+apt-get update
+apt-get install python
+apt-get install python-pip
+fi
+fi
+
+if [[ "$CONF" = "intel" ]]
+then
+if [[ -d /System/Library/CoreServices/Finder.app ]]
+then
+echo ""$GNS"Installing dependencies..."$CE""
+else
+echo ""$GNS"Installing dependencies..."$CE""
+apt-get update
+apt-get install python
+apt-get install python-pip
+fi
+fi
+fi
+
+{
+pip install setuptools
+pip install -r requirements.txt
+} &> /dev/null
