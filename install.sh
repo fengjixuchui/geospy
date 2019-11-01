@@ -75,10 +75,15 @@ then
 if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
 then
 echo ""$GNS"Installing dependencies..."$CE""
+{
+if ! which pip > /dev/null; then
+	curl https://bootstrap.pypa.io/get-pip.py | python
+fi
+} &> /dev/null
 else 
 echo ""$GNS"Installing dependencies..."$CE""
 pkg update
-pkg -y install python2
+pkg -y install python
 pkg -y install python-pip
 fi
 fi
@@ -88,10 +93,15 @@ then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
 echo ""$GNS"Installing dependencies..."$CE""
+{
+if ! which pip > /dev/null; then
+	curl https://bootstrap.pypa.io/get-pip.py | python
+fi
+} &> /dev/null
 else
 echo ""$GNS"Installing dependencies..."$CE""
 apt-get update
-apt-get -y install python2
+apt-get -y install python
 apt-get -y install python-pip
 fi
 fi
@@ -101,10 +111,15 @@ then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
 echo ""$GNS"Installing dependencies..."$CE""
+{
+if ! which pip > /dev/null; then
+	curl https://bootstrap.pypa.io/get-pip.py | python
+fi
+} &> /dev/null
 else
 echo ""$GNS"Installing dependencies..."$CE""
 apt-get update
-apt-get -y install python2
+apt-get -y install python
 apt-get -y install python-pip
 fi
 fi
@@ -136,10 +151,15 @@ then
 if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
 then
 echo ""$GNS"Installing dependencies..."$CE""
+{
+if ! which pip > /dev/null; then
+	curl https://bootstrap.pypa.io/get-pip.py | python
+fi
+} &> /dev/null
 else 
 echo ""$GNS"Installing dependencies..."$CE""
 pkg update
-pkg -y install python2
+pkg -y install python
 pkg -y install python-pip
 fi
 fi
@@ -149,10 +169,15 @@ then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
 echo ""$GNS"Installing dependencies..."$CE""
+{
+if ! which pip > /dev/null; then
+	curl https://bootstrap.pypa.io/get-pip.py | python
+fi
+} &> /dev/null
 else
 echo ""$GNS"Installing dependencies..."$CE""
 apt-get update
-apt-get -y install python2
+apt-get -y install python
 apt-get -y install python-pip
 fi
 fi
@@ -162,10 +187,15 @@ then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
 echo ""$GNS"Installing dependencies..."$CE""
+{
+if ! which pip > /dev/null; then
+	curl https://bootstrap.pypa.io/get-pip.py | python
+fi
+} &> /dev/null
 else
 echo ""$GNS"Installing dependencies..."$CE""
 apt-get update
-apt-get -y install python2
+apt-get -y install python
 apt-get -y install python-pip
 fi
 fi
