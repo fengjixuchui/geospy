@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # Copyright (C) 2016 - 2018 Entynetproject
 #
@@ -84,7 +84,6 @@ else
 echo ""$GNS"Installing dependencies..."$CE""
 pkg update
 pkg -y install python
-pkg -y install python-pip
 fi
 fi
 
@@ -160,7 +159,6 @@ else
 echo ""$GNS"Installing dependencies..."$CE""
 pkg update
 pkg -y install python
-pkg -y install python-pip
 fi
 fi
 
