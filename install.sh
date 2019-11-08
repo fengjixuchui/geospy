@@ -26,6 +26,7 @@ RS="\033[1;31m"
 YS="\033[1;33m"
 CE="\033[0m"
 GNS="-e \033[32m"
+GNSB="-e \033[1;32m"
 
 if [[ $EUID -ne 0 ]]
 then
@@ -37,26 +38,11 @@ fi
 
 if [[ -d ~/geospy ]]
 then
-cd ~/geospy/bin
-{
-cp geospy /usr/local/bin
-chmod +x /usr/local/bin/geospy
-cp geospy /bin
-chmod +x /bin/geospy
-cp geospy /data/data/com.termux/files/usr/bin
-chmod +x /data/data/com.termux/files/usr/bin/geospy
-} &> /dev/null
+sleep 0
 else
 cd ~
 {
 git clone https://github.com/entynetproject/geospy.git
-cd ~/geospy/bin
-cp geospy /usr/local/bin
-chmod +x /usr/local/bin/geospy
-cp geospy /bin
-chmod +x /bin/geospy
-cp geospy /data/data/com.termux/files/usr/bin
-chmod +x /data/data/com.termux/files/usr/bin/geospy
 } &> /dev/null
 fi
 sleep 0.5
@@ -74,14 +60,14 @@ if [[ "$CONF" = "arm" ]]
 then
 if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
 then
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else 
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 pkg update
 pkg -y install python
 fi
@@ -91,14 +77,14 @@ if [[ "$CONF" = "amd" ]]
 then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 apt-get update
 apt-get -y install python
 apt-get -y install python-pip
@@ -109,14 +95,14 @@ if [[ "$CONF" = "intel" ]]
 then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 apt-get update
 apt-get -y install python
 apt-get -y install python-pip
@@ -149,14 +135,14 @@ if [[ "$CONF" = "arm" ]]
 then
 if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
 then
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else 
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 pkg update
 pkg -y install python
 fi
@@ -166,14 +152,14 @@ if [[ "$CONF" = "amd" ]]
 then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 apt-get update
 apt-get -y install python
 apt-get -y install python-pip
@@ -184,14 +170,14 @@ if [[ "$CONF" = "intel" ]]
 then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else
-echo ""$GNS"Installing dependencies..."$CE""
+echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 apt-get update
 apt-get -y install python
 apt-get -y install python-pip
@@ -202,4 +188,14 @@ fi
 {
 pip install setuptools
 pip install -r requirements.txt
+} &> /dev/null
+
+{
+cd ~/geospy/bin
+cp geospy /usr/local/bin
+chmod +x /usr/local/bin/geospy
+cp geospy /bin
+chmod +x /bin/geospy
+cp geospy /data/data/com.termux/files/usr/bin
+chmod +x /data/data/com.termux/files/usr/bin/geospy
 } &> /dev/null
