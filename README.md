@@ -98,13 +98,10 @@ usage: geospy [-h] [-v] [-u URL] [-p PORT] [-ak ACCESSKEY] [-l LOCAL] [-n]
 
 optional arguments:
   -h, --help            show this help message and exit
-  -v, --version         show program's version number and exit
   -u URL, --url URL     Put the web page URL to clone.
   -p PORT, --port PORT  Insert your port.
   -ak ACCESSKEY, --accesskey ACCESSKEY
                         Insert your custom Access Key.
-  -l LOCAL, --local LOCAL
-                        Insert your home file.
   -n, --ngrok           Insert your ngrok Authtoken.
   -ic INJC, --injectcode INJC
                         Insert your custom REST API path.
@@ -132,19 +129,18 @@ optional arguments:
 * **EXAMPLE**
 
 ```
-geospy --url http://example.com --port 80
+geospy --url http://example.com --port 8080
 ```
 
 ***
 
-Disclaimer
+Geolocation spy disclaimer
 -------
-This tool has been published educational purposes. It is intended to teach people how bad guys could track them, monitor them or obtain information from their credentials, we are not responsible for the use or the scope that someone may have through this project.
-We are totally convinced that if we teach how vulnerable things really are, we can make the Internet a safer place.
+Usage of the Geolocation Spy for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state, federal, and international laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program.
 
 ***
 
-GeoSpy apache license
+Geolocation spy license
 -------
 
     Copyright (C) 2016 - 2018 Entynetproject
@@ -161,13 +157,6 @@ GeoSpy apache license
     WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
     License for the specific language governing permissions and limitations under
     the License.
-
-    Disclaimer:
-    This tool has been published educational purposes. It is intended to teach 
-    people how bad guys could track them, monitor them or obtain information from 
-    their credentials, we are not responsible for the use or the scope that someone 
-    may have through this project. We are totally convinced that if we teach how 
-    vulnerable things really are, we can make the Internet a safer place.
 
 ***
 

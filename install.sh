@@ -14,21 +14,14 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under
 # the License.
-#
-# Disclaimer:
-# This tool has been published educational purposes. It is intended to teach 
-# people how bad guys could track them, monitor them or obtain information from 
-# their credentials, we are not responsible for the use or the scope that someone 
-# may have through this project. We are totally convinced that if we teach how 
-# vulnerable things really are, we can make the Internet a safer place.
 
 RS="\033[1;31m"
 YS="\033[1;33m"
 CE="\033[0m"
 GNS="-e \033[32m"
-GNSB="-e \033[1;32m"
-WSW="\033[0;77m"
-WS="\033[1;77m"
+GNSB="\033[1;32m"
+WSW="\033[0;37m"
+WS="\033[1;37m"
 
 if [[ $EUID -ne 0 ]]
 then
@@ -62,14 +55,14 @@ if [[ "$CONF" = "arm" ]]
 then
 if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
 then
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else 
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 pkg update
 pkg -y install python
 fi
@@ -79,14 +72,14 @@ if [[ "$CONF" = "amd" ]]
 then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 apt-get update
 apt-get -y install python
 apt-get -y install python-pip
@@ -97,14 +90,14 @@ if [[ "$CONF" = "intel" ]]
 then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 apt-get update
 apt-get -y install python
 apt-get -y install python-pip
@@ -137,14 +130,14 @@ if [[ "$CONF" = "arm" ]]
 then
 if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
 then
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else 
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 pkg update
 pkg -y install python
 fi
@@ -154,14 +147,14 @@ if [[ "$CONF" = "amd" ]]
 then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 apt-get update
 apt-get -y install python
 apt-get -y install python-pip
@@ -172,14 +165,14 @@ if [[ "$CONF" = "intel" ]]
 then
 if [[ -d /System/Library/CoreServices/Finder.app ]]
 then
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 {
 if ! which pip > /dev/null; then
 	curl https://bootstrap.pypa.io/get-pip.py | python
 fi
 } &> /dev/null
 else
-echo "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
 apt-get update
 apt-get -y install python
 apt-get -y install python-pip
