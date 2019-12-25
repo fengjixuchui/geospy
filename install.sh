@@ -23,6 +23,8 @@ GNSB="\033[1;32m"
 WSW="\033[0;37m"
 WS="\033[1;37m"
 
+printf '\033]2;install.sh\a'
+
 if [[ $EUID -ne 0 ]]
 then
    sleep 1
@@ -52,30 +54,38 @@ sleep 1
 
 {
 pkg update
+pkg -y install git
 pkg -y install python
+apt-get update
+apt-get -y istall git
 apt-get -y install python
 apt-get -y install python-pip
 apk update
+apk add git
 apk add python
 apk add py-pip
 pacman -Sy
+pacman -S --noconfirm git
 pacman -S --noconfirm python
 pacman -S --noconfirm python-pip
 zypper refresh
+zypper install -y git
 zypper install -y python
 zypper install -y python-pip
+yum -y install git
 yum -y install python
 yum -y install python-pip
+dnf -y install git
 dnf -y install python
 dnf -y install python-pip
 eopkg update-repo
+eopkg -y install git
 eopkg -y install python
 eopkg -y install pip
 xbps-install -S
+xbps-install -y git
 xbps-install -y python
 xbps-install -y python-pip
-nix-env -i python
-nix-env -i python2.7-bootstrapped-pip-19.2.3
 } &> /dev/null
 
 {
@@ -92,3 +102,7 @@ chmod +x /bin/geospy
 cp geospy /data/data/com.termux/files/usr/bin
 chmod +x /data/data/com.termux/files/usr/bin/geospy
 } &> /dev/null
+
+sleep 1
+echo -e "["$GNSB"i"$CE"] Successfully installed!"$CE""
+sleep 1
