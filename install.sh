@@ -22,41 +22,57 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+printf '\033]2;install.sh\a'
+
+N="\033[1;37m"
+C="\033[0m"
+
+CE="\033[0m"
 RS="\033[1;31m"
 YS="\033[1;33m"
-CE="\033[0m"
-GNS="-e \033[32m"
-GNSB="\033[1;32m"
-WSW="\033[0;37m"
-WS="\033[1;37m"
+BS="\033[1;34m"
+GNS="\033[1;32m"
 
-printf '\033]2;install.sh\a'
+R="\033[1;31m"
+WS="\033[0m"
 
 if [[ $EUID -ne 0 ]]
 then
    sleep 1
-   echo -e ""$WS"["$RS"x"$WS"] "$RS"ERROR: "$WSW"This script must be run as root!"$CE""
+   echo -e ""$RS"[-] "$WS"This script must be run as root!"$CE"" 1>&2
    sleep 1
    exit
 fi
 
-if [[ -d ~/geospy ]]
+if [[ -d ~/quack ]]
 then
 sleep 0
 else
 cd ~
 {
-git clone https://github.com/entynetproject/geospy.git
+git clone https://github.com/entynetproject/quack.git
 } &> /dev/null
 fi
-
 sleep 0.5
-cd ~/geospy
-chmod +x banner/banner.sh
-banner/banner.sh
+clear
+sleep 0.5
+cd ~/quack
+echo -e """     
+  █████   █    ██  ▄▄▄       ▄████▄   ██ ▄█▀
+▒██▓  ██▒ ██  ▓██▒▒████▄    ▒██▀ ▀█   ██▄█▒ 
+▒██▒  ██░▓██  ▒██░▒██  ▀█▄  ▒▓█    ▄ ▓███▄░ 
+░██  █▀ ░▓▓█  ░██░░██▄▄▄▄██ ▒▓▓▄ ▄██▒▓██ █▄ 
+░▒███▒█▄ ▒▒█████▓  ▓█   ▓██▒▒ ▓███▀ ░▒██▒ █▄
+░░ ▒▒░ ▒ ░▒▓▒ ▒ ▒  ▒▒   ▓▒█░░ ░▒ ▒  ░▒ ▒▒ ▓▒
+ ░ ▒░  ░ ░░▒░ ░ ░   ▒   ▒▒ ░  ░  ▒   ░ ░▒ ▒░
+   ░   ░  ░░░ ░ ░   ░   ▒   ░        ░ ░░ ░ 
+    ░       ░           ░  ░░ ░      ░  ░   
+                            ░               
+"""
+echo
 
 sleep 1
-echo -e "["$GNSB"i"$CE"] Installing dependencies..."$CE""
+echo -e ""$BS"[*]"$WS" Installing dependencies..."$CE""
 sleep 1
 
 {
@@ -64,52 +80,52 @@ pkg update
 pkg -y install git
 pkg -y install python
 apt-get update
-apt-get -y istall git
-apt-get -y install python
-apt-get -y install python-pip
+apt-get -y install git
+apt-get -y install python3
+apt-get -y install python3-pip
 apk update
 apk add git
-apk add python
-apk add py-pip
+apk add python3
+apk add py3-pip
 pacman -Sy
 pacman -S --noconfirm git
-pacman -S --noconfirm python
-pacman -S --noconfirm python-pip
+pacman -S --noconfirm python3
+pacman -S --noconfirm python3-pip
 zypper refresh
 zypper install -y git
-zypper install -y python
-zypper install -y python-pip
+zypper install -y python3
+zypper install -y python3-pip
 yum -y install git
-yum -y install python
-yum -y install python-pip
+yum -y install python3
+yum -y install python3-pip
 dnf -y install git
-dnf -y install python
-dnf -y install python-pip
+dnf -y install python3
+dnf -y install python3-pip
 eopkg update-repo
 eopkg -y install git
-eopkg -y install python
+eopkg -y install python3
 eopkg -y install pip
 xbps-install -S
 xbps-install -y git
-xbps-install -y python
-xbps-install -y python-pip
+xbps-install -y python3
+xbps-install -y python3-pip
 } &> /dev/null
 
 {
-python -m pip install setuptools
-python -m pip install -r requirements.txt
+python3 -m pip install setuptools
+python3 -m pip install -r requirements.txt
 } &> /dev/null
 
 {
-cd ~/geospy/bin
-cp geospy /usr/local/bin
-chmod +x /usr/local/bin/geospy
-cp geospy /bin
-chmod +x /bin/geospy
-cp geospy /data/data/com.termux/files/usr/bin
-chmod +x /data/data/com.termux/files/usr/bin/geospy
+cd ~/quack/bin
+cp quack /usr/local/bin
+chmod +x /usr/local/bin/quack
+cp quack /bin
+chmod +x /bin/quack
+cp quack /data/data/com.termux/files/usr/bin
+chmod +x /data/data/com.termux/files/usr/bin/quack
 } &> /dev/null
 
 sleep 1
-echo -e "["$GNSB"i"$CE"] Successfully installed!"$CE""
+echo -e ""$GNS"[+]"$WS" Successfully installed!"$CE""
 sleep 1
