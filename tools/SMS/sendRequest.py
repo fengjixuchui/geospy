@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (C) 2019-2020, Entynetproject. All Rights Reserved.
+# Copyright (C) 2020, Entynetproject. All Rights Reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -106,8 +106,8 @@ class Service:
                 headers[key] = value
 
         # Create suffixes
-        okay  = " Service (" + getDomain(url) + ") >> Message sent!"
-        error = " Service (" + getDomain(url) + ") >> Failed to sent message!"
+        okay  = "Service (" + getDomain(url) + ") >> Message was sent!"
+        error = "Service (" + getDomain(url) + ") >> Message was not sent."
 
         try:
             # If data type is 'json'
@@ -121,16 +121,16 @@ class Service:
 
             # Check status
             if r.status_code == 200:
-                print("[SUCCESS]" + okay)
+                print("\033[1;32m"+"[+]"+"\033[0m"+ " " + okay)
             elif r.status_code == 429:
-                print("[TOO MANY REQUESTS]" + error)
+                print("\033[1;33m"+"[!]"+"\033[0m"+ " " + error)
             else:
                 #print(r.text)
-                print("[" + str(r.status_code) + "]" + error)
+                print("\033[1;33m"+"[!]"+"\033[0m" + " " + error)
             
             return r.status_code
 
         except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectTimeout):
-            print("[CONNECTION TIMED OUT]" + error)
+            print("\033[1;33m"+"[!]"+"\033[0m"+ " " + error)
         except (requests.exceptions.ConnectionError):
-            print("[CONNECTION ERROR]" + error)
+            print("\033[1;33m"+"[!]"+"\033[0m"+ " " + error)

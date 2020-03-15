@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (C) 2019-2020, Entynetproject. All Rights Reserved.
+# Copyright (C) 2020, Entynetproject. All Rights Reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-printf '\033]2;install.sh\a'
-
 N="\033[1;37m"
 C="\033[0m"
 
@@ -36,10 +34,12 @@ GNS="\033[1;32m"
 R="\033[1;31m"
 WS="\033[0m"
 
+printf '\033]2;install.sh\a'
+
 if [[ $EUID -ne 0 ]]
 then
    sleep 1
-   echo -e ""$RS"[-] "$WS"This script must be run as root!"$CE"" 1>&2
+   echo -e ""$RS"[-]"$WS" This script must be run as root!"$CE"" 1>&2
    sleep 1
    exit
 fi
@@ -56,19 +56,9 @@ fi
 sleep 0.5
 clear
 sleep 0.5
+echo  
 cd ~/quack
-echo -e """     
-  █████   █    ██  ▄▄▄       ▄████▄   ██ ▄█▀
-▒██▓  ██▒ ██  ▓██▒▒████▄    ▒██▀ ▀█   ██▄█▒ 
-▒██▒  ██░▓██  ▒██░▒██  ▀█▄  ▒▓█    ▄ ▓███▄░ 
-░██  █▀ ░▓▓█  ░██░░██▄▄▄▄██ ▒▓▓▄ ▄██▒▓██ █▄ 
-░▒███▒█▄ ▒▒█████▓  ▓█   ▓██▒▒ ▓███▀ ░▒██▒ █▄
-░░ ▒▒░ ▒ ░▒▓▒ ▒ ▒  ▒▒   ▓▒█░░ ░▒ ▒  ░▒ ▒▒ ▓▒
- ░ ▒░  ░ ░░▒░ ░ ░   ▒   ▒▒ ░  ░  ▒   ░ ░▒ ▒░
-   ░   ░  ░░░ ░ ░   ░   ▒   ░        ░ ░░ ░ 
-    ░       ░           ░  ░░ ░      ░  ░   
-                            ░               
-"""
+cat banner/banner.txt
 echo
 
 sleep 1
