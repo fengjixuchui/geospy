@@ -22,12 +22,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
+
+os.system("printf '\033]2;Quack Toolkit\a'")
+
 import argparse
 import sys
 
 def main():
-
-	# Parse args
 	parser = argparse.ArgumentParser()
 	parser.add_argument("--target", type = str, metavar = "<IP:port/URL/phone>",
 					help = "Target IP:port, URL or phone.")
@@ -38,7 +40,8 @@ def main():
 	parser.add_argument("--threads", type = int, default = 3, metavar = "<threads>",
 					help = "Threads count.")
 	parser.add_argument("-u", "--update", action='store_true', dest="update", help = "Update Quack Toolkit.")
-	
+	parser.add_argument("--version", action='store_true', dest="version", help = "Show Quack Toolkt version.")
+
 	# Get args
 	args = parser.parse_args()
 	threads = args.threads
@@ -53,8 +56,14 @@ def main():
 		NTP_ATTACK(threads, time, target)
 		
 	elif args.update:
-		import os
 		os.system("chmod +x bin/quack && bin/quack -u")
+		sys.exit()
+
+	elif args.version:
+		print("")
+		os.system("cat banner/banner.txt")
+		print("")
+		print("Quack Toolkit v2.0")
 		sys.exit()
 
 	elif method == "SYN":

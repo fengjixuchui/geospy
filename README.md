@@ -60,7 +60,7 @@
 ```
 usage: quack [-h] [--target <IP:port/URL/phone>]
              [--tool [SMS|NTP|TCP|UDP|SYN|POD|SLOWLORIS|MEMCACHED|HTTP|NJRAT]]
-             [--timeout <timeout>] [--threads <threads>] [-u]
+             [--timeout <timeout>] [--threads <threads>] [-u] [--version]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -71,22 +71,23 @@ optional arguments:
   --timeout <timeout>   Timeout in secounds.
   --threads <threads>   Threads count.
   -u, --update          Update Quack Toolkit.
+  --version             Show Quack Toolkit version.
 ``` 
 ***
   
 # Quack Toolkit examples
 
-> Example of the SMS attack:
+## Example of the SMS attack
     
-    quack --tool SMS --target 15554443333 --time 10 --threads 10
+> quack --tool SMS --target 15554443333 --time 10 --threads 10
     
-> Example of the HTTP attack:
+## Example of the HTTP attack
 
-    quack --tool HTTP --target http://example.com/ --time 10 --threads 10
+> quack --tool HTTP --target example.com --time 10 --threads 10
     
-> Example of the TCP attack:
+## Example of the TCP attack
 
-    quack --tool TCP --target 192.168.1.100:80 --time 10 --threads 10
+> quack --tool TCP --target 192.168.1.100:80 --time 10 --threads 10
 
 ***
 

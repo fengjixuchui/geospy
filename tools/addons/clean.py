@@ -23,10 +23,5 @@
 # SOFTWARE.
 
 import os
-import platform
 
-# Clear cmd/teminal
-if platform.system() == "Windows":
-    os.system("@cls & @title Quack ToolKit & @color a")
-else:
-    os.system("clear")
+os.system("clear")
