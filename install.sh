@@ -45,12 +45,12 @@ then
 fi
 
 {
-ASESR="$( curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' )"
+ASESR="$( ping -c 1 -q google.com >&/dev/null; echo $? )"
 } &> /dev/null
-if [[ "$ASESR" = "" ]]
+if [[ "$ASESR" != 0 ]]
 then 
    sleep 1
-   echo -e ""$RS"[-] "$WS"No Internet connection!"$CE""
+   echo -e ""$RS"[-] "$WHS"No Internet connection!"$CE""
    sleep 1
    exit
 fi
