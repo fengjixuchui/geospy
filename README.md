@@ -21,6 +21,9 @@
   <a href="https://twitter.com/entynetproject">
     <img src="https://img.shields.io/badge/twitter-entynetproject-blue.svg">
  </a>
+  <a href="https://github.com/LimerBoy/Impulse">
+    <img src="https://img.shields.io/badge/based%20on-Impulse-red.svg">
+ </a>
 </p>
 
 ***
@@ -28,7 +31,7 @@
 # About Quack Toolkit
 
 ```
-Quack Toolkit is a set of tools for performing denial 
+Quack Toolkit is a set of tools to provide denial 
 of service attacks. Quack Toolkit includes SMS attack 
 tool, HTTP attack tool and many other attack tools.
 ```
@@ -57,20 +60,25 @@ tool, HTTP attack tool and many other attack tools.
 
 # Quack Toolkit execution
 
-> quack -h
+```
+To run Quack Toolkit you should 
+execute the following command.
+```
+
+> quack
 
 ```
-usage: quack [-h] [--target <IP:port/URL/phone>]
+usage: quack [-h] [--target <ip:port/URL/phone>]
              [--tool [SMS|NTP|TCP|UDP|SYN|POD|SLOWLORIS|MEMCACHED|HTTP|NJRAT]]
              [--timeout <timeout>] [--threads <threads>] [-u] [--version]
 
 optional arguments:
   -h, --help            show this help message and exit
-  --target <IP:port/URL/phone>
-                        Target IP:port, URL or phone.
+  --target <ip:port/URL/phone>
+                        Target IP and port, URL or phone.
   --tool [SMS|NTP|TCP|UDP|SYN|POD|SLOWLORIS|MEMCACHED|HTTP|NJRAT]
                         Attack tool.
-  --timeout <timeout>   Timeout in secounds.
+  --timeout <timeout>   Timeout in seconds.
   --threads <threads>   Threads count.
   -u, --update          Update Quack Toolkit.
   --version             Show Quack Toolkit version.
@@ -100,32 +108,4 @@ optional arguments:
 Usage of the Quack Toolkit for attacking targets without prior mutual consent is illegal.
 It is the end user's responsibility to obey all applicable local, state, federal, and international laws.
 Developers assume no liability and are not responsible for any misuse or damage caused by this program.
-```
-
-***
-
-# Quack Toolkit license
-
-```
-MIT License
-
-Copyright (C) 2020, Entynetproject. All Rights Reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 ```
